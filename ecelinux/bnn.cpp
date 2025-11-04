@@ -49,6 +49,7 @@ bit32_t bnn_xcel(bit input[1][I_WIDTH1][I_WIDTH1]) {
   bit conv1[O_CHANNEL1][I_WIDTH1][I_WIDTH1];
   bit conv1_pooled[O_CHANNEL1][I_WIDTH2][I_WIDTH2];
   bit conv1_pooled_padded[O_CHANNEL1][I_WIDTH2 + F_PAD][I_WIDTH2 + F_PAD];
+  #pragma HLS array_reshape variable=conv1_pooled_padded block factor=16 dim=1
 
   initialize_padded_memory<O_CHANNEL1, I_WIDTH2 + F_PAD, 0>(
       conv1_pooled_padded);
